@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreeAlt — Free Alternatives to Paid Apps &amp; Tools</title>
+<meta name="description" content="Hit a paywall? Find legit free, open-source and freemium alternatives to paid apps and tools — with a phone-only friendly tag, because not everyone has a PC.">
+<style>
+  :root{
+    --bg:#0c1210; --card:#141d19; --card2:#1a2620; --line:#24352c;
+    --txt:#e8f2ec; --dim:#9db8a9; --green:#2fd574; --green-d:#0f3d24;
+    --amber:#ffb340; --chip:#1d2d25;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--txt); font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; line-height:1.45;}
+  header{padding:28px 16px 8px; text-align:center;}
+  .logo{font-size:34px; font-weight:800; letter-spacing:-.5px;}
+  .logo span{color:var(--green);}
+  .tag{color:var(--dim); font-size:15px; margin-top:6px;}
+  .tag b{color:var(--txt);}
+  .wrap{max-width:760px; margin:0 auto; padding:0 14px 60px;}
+  .searchbox{position:sticky; top:0; background:var(--bg); padding:14px 0 10px; z-index:5;}
+  #q{width:100%; padding:14px 16px; font-size:17px; border-radius:12px; border:1px solid var(--line); background:var(--card); color:var(--txt); outline:none;}
+  #q:focus{border-color:var(--green);}
+  .chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+  .chip{padding:7px 12px; border-radius:999px; background:var(--chip); border:1px solid var(--line); color:var(--dim); font-size:13px; cursor:pointer; user-select:none;}
+  .chip.on{background:var(--green); color:#06280f; border-color:var(--green); font-weight:700;}
+  .toggle{display:flex; align-items:center; gap:8px; margin-top:12px; font-size:14px; color:var(--dim); cursor:pointer; user-select:none;}
+  .toggle input{width:18px; height:18px; accent-color:var(--green);}
+  .count{color:var(--dim); font-size:13px; margin:18px 2px 10px;}
+  .entry{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; margin-bottom:12px;}
+  .paid{font-size:13px; color:var(--dim); text-transform:uppercase; letter-spacing:.6px;}
+  .paid b{color:var(--txt); font-size:16px; text-transform:none; letter-spacing:0;}
+  .alt{display:flex; gap:10px; background:var(--card2); border:1px solid var(--line); border-radius:10px; padding:10px 12px; margin-top:8px; align-items:flex-start;}
+  .alt-main{flex:1; min-width:0;}
+  .alt-name{font-weight:700; font-size:15px;}
+  .alt-name a{color:var(--txt); text-decoration:none; border-bottom:1px dotted var(--green);}
+  .alt-note{color:var(--dim); font-size:13.5px; margin-top:2px;}
+  .badges{display:flex; flex-direction:column; gap:4px; align-items:flex-end; flex-shrink:0;}
+  .badge{font-size:11px; font-weight:700; padding:3px 8px; border-radius:999px; white-space:nowrap;}
+  .b-free{background:var(--green-d); color:var(--green);}
+  .b-oss{background:#123a4d; color:#5ec8f2;}
+  .b-freemium{background:#4d3a12; color:var(--amber);}
+  .b-phone{background:#2c2145; color:#b79df5;}
+  .b-plat{background:transparent; border:1px solid var(--line); color:var(--dim); font-weight:600;}
+  .empty{text-align:center; color:var(--dim); padding:40px 10px; font-size:15px;}
+  footer{text-align:center; color:var(--dim); font-size:13px; padding:0 16px 34px;}
+  footer b{color:var(--green);}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Free<span>Alt</span></div>
+  <p class="tag">Hit a paywall? Find the <b>free way</b> instead.<br>Legit free, open-source &amp; freemium alternatives — tagged 📱 when they work <b>phone-only, no PC needed</b>.</p>
+</header>
+<div class="wrap">
+  <div class="searchbox">
+    <input id="q" type="search" placeholder="Search a paid app… e.g. Photoshop, VPN, hosting" autocomplete="off">
+    <div class="chips" id="chips"></div>
+    <label class="toggle"><input type="checkbox" id="phoneOnly"> 📱 Phone-only friendly only</label>
+  </div>
+  <p class="count" id="count"></p>
+  <div id="list"></div>
+  <div class="empty" id="empty" style="display:none">Nothing matched. Try a shorter name — or browse a category above.</div>
+</div>
+<footer>Built for the phone-only crowd. Every listing is a <b>legit free option</b> — no cracked apps, ever.</footer>
+<script>
+const DATA = [
+ {paid:"Adobe Premiere Pro", cat:"Video", alts:[
+   {n:"CapCut", d:"Full editor with effects, captions and templates. Free tier is generous; a few pro effects are paid.", t:"Freemium", p:"Android · Web", ph:1, u:"https://www.capcut.com"},
+   {n:"VN Video Editor", d:"No watermark, no ads, multi-track editing. Genuinely free.", t:"Free", p:"Android", ph:1, u:"https://www.vlognow.me"},
+   {n:"DaVinci Resolve", d:"Pro-grade desktop editor; the free version is what many paid editors wish they were.", t:"Freemium", p:"PC", ph:0, u:"https://www.blackmagicdesign.com/products/davinciresolve"}]},
+ {paid:"KineMaster (watermark / Premium)", cat:"Video", alts:[
+   {n:"CapCut", d:"No watermark on exports, bigger template library.", t:"Freemium", p:"Android · Web", ph:1, u:"https://www.capcut.com"},
+   {n:"YouCut", d:"Light, fast editor for quick cuts; free tier covers most people.", t:"Freemium", p:"Android", ph:1, u:"https://play.google.com/store/apps/details?id=com.camerasideas.trimmer"}]},
+ {paid:"Adobe Lightroom Premium", cat:"Photo", alts:[
+   {n:"Snapseed", d:"Google's editor — pro tools, zero cost, zero ads. The default answer.", t:"Free", p:"Android", ph:1, u:"https://play.google.com/store/apps/details?id=com.niksoftware.snapseed"},
+   {n:"Darktable", d:"Lightroom-style raw workflow for desktop, open source.", t:"Open source", p:"PC", ph:0, u:"https://www.darktable.org"}]},
+ {paid:"Adobe Photoshop", cat:"Photo", alts:[
+   {n:"Photopea", d:"A Photoshop clone that runs in your browser — opens PSDs, layers, the lot. Works on a phone browser too.", t:"Free", p:"Web", ph:1, u:"https://www.photopea.com"},
+   {n:"GIMP", d:"The classic open-source image editor for desktop.", t:"Open source", p:"PC", ph:0, u:"https://www.gimp.org"},
+   {n:"Krita", d:"Loved by digital artists; drawing-first, open source.", t:"Open source", p:"PC · Android", ph:1, u:"https://krita.org"}]},
+ {paid:"Midjourney (AI images)", cat:"AI", alts:[
+   {n:"Microsoft Designer / Bing Image Creator", d:"Free AI image generation from Microsoft, no card needed.", t:"Free", p:"Web", ph:1, u:"https://www.bing.com/images/create"},
+   {n:"Leonardo AI", d:"Daily free tokens, strong quality and control.", t:"Freemium", p:"Web", ph:1, u:"https://leonardo.ai"},
+   {n:"Ideogram", d:"Best-in-class text inside images; free tier included.", t:"Freemium", p:"Web", ph:1, u:"https://ideogram.ai"}]},
+ {paid:"ChatGPT Plus", cat:"AI", alts:[
+   {n:"Gemini", d:"Google's AI — the free app already does a lot, and it lives on your phone.", t:"Freemium", p:"Android · Web", ph:1, u:"https://gemini.google.com"},
+   {n:"DeepSeek", d:"Strong free chat and reasoning, no subscription wall.", t:"Free", p:"Android · Web", ph:1, u:"https://www.deepseek.com"},
+   {n:"Perplexity", d:"AI search with sources; free tier is plenty for everyday questions.", t:"Freemium", p:"Android · Web", ph:1, u:"https://www.perplexity.ai"}]},
+ {paid:"remove.bg (background remover credits)", cat:"AI", alts:[
+   {n:"Adobe Express Background Remover", d:"Free background removal from Adobe itself, in the browser.", t:"Free", p:"Web", ph:1, u:"https://www.adobe.com/express/feature/image/remove-background"},
+   {n:"Photopea", d:"Select-subject + manual cleanup when you need full quality for free.", t:"Free", p:"Web", ph:1, u:"https://www.photopea.com"}]},
+ {paid:"Runway / paid AI video tools", cat:"AI", alts:[
+   {n:"Kling AI", d:"Free daily credits for AI video generation.", t:"Freemium", p:"Web", ph:1, u:"https://klingai.com"},
+   {n:"CapCut", d:"Built-in AI video and script-to-video tools in the free editor.", t:"Freemium", p:"Android · Web", ph:1, u:"https://www.capcut.com"}]},
+ {paid:"Microsoft 365 (Office subscription)", cat:"Office & PDF", alts:[
+   {n:"Google Docs, Sheets & Slides", d:"Free with a Google account, autosaves, works fully on phone.", t:"Free", p:"Android · Web", ph:1, u:"https://docs.google.com"},
+   {n:"LibreOffice", d:"Full office suite for desktop, open source, opens Office files.", t:"Open source", p:"PC", ph:0, u:"https://www.libreoffice.org"},
+   {n:"WPS Office", d:"Phone-first office suite; free tier has ads but does everything.", t:"Freemium", p:"Android", ph:1, u:"https://www.wps.com"}]},
+ {paid:"Adobe Acrobat Pro (PDF editing)", cat:"Office & PDF", alts:[
+   {n:"Xodo", d:"Read, annotate, sign and edit PDFs on phone; strong free tier.", t:"Freemium", p:"Android · Web", ph:1, u:"https://www.xodo.com"},
+   {n:"iLovePDF", d:"Merge, split, compress and convert PDFs in the browser.", t:"Freemium", p:"Web", ph:1, u:"https://www.ilovepdf.com"},
+   {n:"Sejda", d:"Real PDF editing online, free for a few documents a day.", t:"Freemium", p:"Web", ph:1, u:"https://www.sejda.com"}]},
+ {paid:"CamScanner Premium (scanner apps)", cat:"Office & PDF", alts:[
+   {n:"Microsoft Lens", d:"Scans documents, boards and receipts straight to PDF. Free, no watermark.", t:"Free", p:"Android", ph:1, u:"https://play.google.com/store/apps/details?id=com.microsoft.office.officelens"},
+   {n:"Google Drive scan", d:"Already on your phone: Drive → + New → Scan. Free and saves to your Drive.", t:"Free", p:"Android", ph:1, u:"https://drive.google.com"}]},
+ {paid:"Evernote (paid notes)", cat:"Office & PDF", alts:[
+   {n:"Notion", d:"Notes, wikis and planners; the free personal plan is generous.", t:"Freemium", p:"Android · Web", ph:1, u:"https://www.notion.com"},
+   {n:"Obsidian", d:"Your notes as local files, free for personal use, works offline.", t:"Free", p:"Android · PC", ph:1, u:"https://obsidian.md"},
+   {n:"Google Keep", d:"Dead-simple notes and lists, free forever.", t:"Free", p:"Android · Web", ph:1, u:"https://keep.google.com"}]},
+ {paid:"Canva Pro", cat:"Design", alts:[
+   {n:"Canva Free", d:"The free tier quietly covers most designs — skip anything with a crown.", t:"Freemium", p:"Android · Web", ph:1, u:"https://www.canva.com"},
+   {n:"Figma", d:"Pro design tool with a real free plan, runs in the browser.", t:"Freemium", p:"Web", ph:1, u:"https://www.figma.com"}]},
+ {paid:"Looka / paid logo makers", cat:"Design", alts:[
+   {n:"Canva Free", d:"Thousands of logo templates in the free tier.", t:"Freemium", p:"Android · Web", ph:1, u:"https://www.canva.com"},
+   {n:"Hatchful by Shopify", d:"Free logo maker, no sign-up wall for downloads.", t:"Free", p:"Web", ph:1, u:"https://www.shopify.com/tools/logo-maker"}]},
+ {paid:"Paid resume builders (Resume.io etc.)", cat:"Design", alts:[
+   {n:"FlowCV", d:"Beautiful resumes, genuinely free — including the PDF download that other sites charge for.", t:"Free", p:"Web", ph:1, u:"https://flowcv.com"},
+   {n:"Google Docs templates", d:"Clean built-in resume templates, free with a Google account.", t:"Free", p:"Web · Android", ph:1, u:"https://docs.google.com"}]},
+ {paid:"Spotify Premium", cat:"Music & Media", alts:[
+   {n:"Spotify Free", d:"Same library with ads and shuffle limits on mobile — costs nothing.", t:"Freemium", p:"Android", ph:1, u:"https://www.spotify.com"},
+   {n:"YouTube Music (free tier)", d:"Huge catalogue including live and rare tracks, ad-supported.", t:"Freemium", p:"Android · Web", ph:1, u:"https://music.youtube.com"},
+   {n:"SoundCloud", d:"Indie and underground tracks you won't find elsewhere; free tier.", t:"Freemium", p:"Android · Web", ph:1, u:"https://soundcloud.com"}]},
+ {paid:"FL Studio Mobile (paid app)", cat:"Music & Media", alts:[
+   {n:"BandLab", d:"A full music studio on your phone — recording, beats, effects — completely free.", t:"Free", p:"Android · Web", ph:1, u:"https://www.bandlab.com"}]},
+ {paid:"Paid screen recorders", cat:"Music & Media", alts:[
+   {n:"Android's built-in recorder", d:"Most phones already have one in the quick-settings tiles. Check before installing anything.", t:"Free", p:"Android", ph:1, u:"https://support.google.com/android/answer/9075928"},
+   {n:"AZ Screen Recorder", d:"The long-standing free-tier favourite for Android recording.", t:"Freemium", p:"Android", ph:1, u:"https://play.google.com/store/apps/details?id=com.hecorat.screenrecorder.free"},
+   {n:"OBS Studio", d:"The recording/streaming standard on PC, open source.", t:"Open source", p:"PC", ph:0, u:"https://obsproject.com"}]},
+ {paid:"Shutterstock / paid stock photos", cat:"Music & Media", alts:[
+   {n:"Unsplash", d:"Free high-quality photos, no attribution required.", t:"Free", p:"Web", ph:1, u:"https://unsplash.com"},
+   {n:"Pexels", d:"Free photos and videos for projects and posts.", t:"Free", p:"Web", ph:1, u:"https://www.pexels.com"},
+   {n:"Pixabay", d:"Photos, illustrations and music, all free to use.", t:"Free", p:"Web", ph:1, u:"https://pixabay.com"}]},
+ {paid:"Dropbox Plus / paid cloud storage", cat:"Storage & Files", alts:[
+   {n:"Google Drive", d:"15 GB free with any Google account, already on your phone.", t:"Free", p:"Android · Web", ph:1, u:"https://drive.google.com"},
+   {n:"MEGA", d:"20 GB free with end-to-end encryption.", t:"Freemium", p:"Android · Web", ph:1, u:"https://mega.io"},
+   {n:"Ente", d:"Private, encrypted photo storage; open source, small free tier.", t:"Freemium", p:"Android · Web", ph:1, u:"https://ente.io"}]},
+ {paid:"iCloud+ / extra paid cloud space", cat:"Storage & Files", alts:[
+   {n:"TeraBox", d:"1 TB free tier — generous space, but expect ads and slower speeds.", t:"Freemium", p:"Android · Web", ph:1, u:"https://www.terabox.com"},
+   {n:"Proton Drive", d:"Encrypted storage from the Proton VPN team; free tier included.", t:"Freemium", p:"Android · Web", ph:1, u:"https://proton.me/drive"}]},
+ {paid:"WeTransfer Pro (big file sending)", cat:"Storage & Files", alts:[
+   {n:"Wormhole", d:"Send files up to 10 GB free, end-to-end encrypted, no account.", t:"Free", p:"Web", ph:1, u:"https://wormhole.app"},
+   {n:"PairDrop", d:"AirDrop for everything — send files browser-to-browser on the same network.", t:"Free", p:"Web", ph:1, u:"https://pairdrop.net"},
+   {n:"LocalSend", d:"Send files between your own devices offline, open source.", t:"Open source", p:"Android · PC", ph:1, u:"https://localsend.org"}]},
+ {paid:"WinRAR (paid archive features)", cat:"Storage & Files", alts:[
+   {n:"ZArchiver", d:"The Android archive manager — zip, rar, 7z, everything. Free.", t:"Free", p:"Android", ph:1, u:"https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver"},
+   {n:"7-Zip", d:"The desktop standard, open source and free forever.", t:"Open source", p:"PC", ph:0, u:"https://www.7-zip.org"}]},
+ {paid:"ngrok paid plans (tunnels / port forwarding)", cat:"Networking & Proxy", alts:[
+   {n:"playit.gg", d:"Free tunnel that puts your home server (yes, Minecraft) on the internet — no router settings.", t:"Freemium", p:"PC · Web", ph:0, u:"https://playit.gg"},
+   {n:"Cloudflare Tunnel", d:"Free, unlimited tunnels from Cloudflare if you can run one small program on the host.", t:"Free", p:"PC", ph:0, u:"https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/"},
+   {n:"Tailscale", d:"Private network between your own devices; free personal plan is generous.", t:"Freemium", p:"Android · PC", ph:1, u:"https://tailscale.com"}]},
+ {paid:"Paid proxy services", cat:"Networking & Proxy", alts:[
+   {n:"Cloudflare WARP (1.1.1.1 app)", d:"One-tap encrypted connection from Cloudflare — free and unlimited. Skip random 'free proxy' lists; they log and sell your traffic.", t:"Free", p:"Android", ph:1, u:"https://one.one.one.one"},
+   {n:"Psiphon", d:"Free tool built for getting around blocked networks; simple on/off on phone.", t:"Free", p:"Android", ph:1, u:"https://psiphon.ca"},
+   {n:"Tor Browser", d:"Maximum-privacy browsing, open source. Slow, but the real thing.", t:"Open source", p:"Android", ph:1, u:"https://www.torproject.org"}]},
+ {paid:"TeamViewer (remote desktop)", cat:"Networking & Proxy", alts:[
+   {n:"RustDesk", d:"Fast remote desktop, open source, free — even self-hostable.", t:"Open source", p:"Android · PC", ph:1, u:"https://rustdesk.com"},
+   {n:"Chrome Remote Desktop", d:"Google's free remote access, set up in minutes.", t:"Free", p:"Android · Web", ph:1, u:"https://remotedesktop.google.com"}]},
+ {paid:"Fing Premium / paid network scanners", cat:"Networking & Proxy", alts:[
+   {n:"Fing (free tier)", d:"See every device on your Wi-Fi; the free scan covers most needs.", t:"Freemium", p:"Android", ph:1, u:"https://www.fing.com"},
+   {n:"PingTools", d:"Ping, traceroute, port scan and more from your phone; strong free tier.", t:"Freemium", p:"Android", ph:1, u:"https://play.google.com/store/apps/details?id=ua.com.streamsoft.pingtools"},
+   {n:"Termux", d:"Real ping, traceroute and nmap from a free terminal on your phone.", t:"Open source", p:"Android", ph:1, u:"https://termux.dev"}]},
+ {paid:"Paid DNS / filtering services", cat:"Networking & Proxy", alts:[
+   {n:"NextDNS", d:"Blocks ads and trackers for your whole phone; free up to 300k queries a month.", t:"Freemium", p:"Android · Web", ph:1, u:"https://nextdns.io"},
+   {n:"AdGuard DNS", d:"Set it as your Private DNS and ads vanish in most apps. Free.", t:"Free", p:"Android · Web", ph:1, u:"https://adguard-dns.io"},
+   {n:"Cloudflare 1.1.1.1 DNS", d:"Just faster, private DNS — set one.one.one.one as your Android Private DNS hostname. Free.", t:"Free", p:"Android · Web", ph:1, u:"https://one.one.one.one"}]},
+ {paid:"Speed test premium tiers", cat:"Networking & Proxy", alts:[
+   {n:"Fast.com", d:"Netflix's speed test — instant, no ads, no upsell.", t:"Free", p:"Web", ph:1, u:"https://fast.com"},
+   {n:"Cloudflare Speed Test", d:"Detailed test with latency and jitter breakdowns.", t:"Free", p:"Web", ph:1, u:"https://speed.cloudflare.com"}]},
+ {paid:"1Password / LastPass Premium (password managers)", cat:"Security", alts:[
+   {n:"Bitwarden", d:"The password manager to get: free tier has everything most people need, open-source core.", t:"Freemium", p:"Android · Web · PC", ph:1, u:"https://bitwarden.com"},
+   {n:"KeePassDX", d:"Offline password vault, open source, no account at all.", t:"Open source", p:"Android", ph:1, u:"https://www.keepassdx.com"}]},
+ {paid:"Paid VPNs (NordVPN, ExpressVPN…)", cat:"Security", alts:[
+   {n:"Proton VPN Free", d:"The one free VPN with no data cap and a real no-logs policy. Slower at peak times, but legit.", t:"Free", p:"Android · PC", ph:1, u:"https://protonvpn.com"},
+   {n:"Windscribe", d:"10 GB a month free — good for occasional use.", t:"Freemium", p:"Android · PC", ph:1, u:"https://windscribe.com"}]},
+ {paid:"Paid antivirus apps", cat:"Security", alts:[
+   {n:"Google Play Protect", d:"Already built into your Android phone and scanning your apps. Check it's on before paying for anything.", t:"Free", p:"Android", ph:1, u:"https://support.google.com/googleplay/answer/2812853"},
+   {n:"Malwarebytes (free scan)", d:"On-demand cleanup scans are free; skip the premium upsell.", t:"Freemium", p:"Android", ph:1, u:"https://www.malwarebytes.com"}]},
+ {paid:"Quizlet Plus (flashcards)", cat:"Study", alts:[
+   {n:"AnkiDroid", d:"The spaced-repetition king — free and open source on Android (the iPhone app is the paid one).", t:"Open source", p:"Android", ph:1, u:"https://apps.ankiweb.net"},
+   {n:"Quizlet (free tier)", d:"Basic flashcards still work free; the AI extras are the paywalled part.", t:"Freemium", p:"Android · Web", ph:1, u:"https://quizlet.com"}]},
+ {paid:"Chegg / homework answer paywalls", cat:"Study", alts:[
+   {n:"Khan Academy", d:"Full lessons in maths, science and more — free forever, no catch.", t:"Free", p:"Android · Web", ph:1, u:"https://www.khanacademy.org"},
+   {n:"Photomath", d:"Snap a maths problem, get steps; the free tier explains most problems.", t:"Freemium", p:"Android", ph:1, u:"https://photomath.com"}]},
+ {paid:"Grammarly Premium", cat:"Study", alts:[
+   {n:"LanguageTool", d:"Grammar checking with an open-source core and a usable free tier.", t:"Freemium", p:"Web · Android", ph:1, u:"https://languagetool.org"},
+   {n:"Google Docs / Gmail suggestions", d:"Built-in spelling and grammar help, already free in your Google apps.", t:"Free", p:"Android · Web", ph:1, u:"https://docs.google.com"}]},
+ {paid:"Paid coding apps & IDE subscriptions", cat:"Coding", alts:[
+   {n:"Termux", d:"A real Linux terminal on your phone — code, run servers, learn. Free and open source.", t:"Open source", p:"Android", ph:1, u:"https://termux.dev"},
+   {n:"Acode", d:"Proper code editor for Android with plugins; free tier is strong.", t:"Freemium", p:"Android", ph:1, u:"https://acode.foxdebug.com"},
+   {n:"Replit", d:"Code and run projects from the browser, nothing to install.", t:"Freemium", p:"Web", ph:1, u:"https://replit.com"},
+   {n:"Pydroid 3", d:"Python on Android with an interpreter and editor; free tier works.", t:"Freemium", p:"Android", ph:1, u:"https://play.google.com/store/apps/details?id=ru.iiec.pydroid3"}]},
+ {paid:"Paid Minecraft server hosting", cat:"Gaming", alts:[
+   {n:"Aternos", d:"Full Minecraft servers (Java + Bedrock addons) for free — the catch is a queue and ads.", t:"Free", p:"Web", ph:1, u:"https://aternos.org"},
+   {n:"Minehut", d:"Free-tier Java servers, quick to spin up for friends.", t:"Freemium", p:"Web", ph:1, u:"https://minehut.com"},
+   {n:"playit.gg", d:"Host on your own machine and tunnel it to the internet free.", t:"Freemium", p:"PC · Web", ph:0, u:"https://playit.gg"}]},
+ {paid:"Minecraft Realms subscription", cat:"Gaming", alts:[
+   {n:"Aternos", d:"Your own always-configurable server instead of a Realm — free, with full addon/mod control.", t:"Free", p:"Web", ph:1, u:"https://aternos.org"},
+   {n:"Paper + Geyser (self-host)", d:"Run a Java server with the free Geyser plugin and Bedrock friends can join too. Needs a host machine.", t:"Open source", p:"PC", ph:0, u:"https://geysermc.org"}]}
+];
+
+const CATS = ["All", ...new Set(DATA.map(e => e.cat))];
+let activeCat = "All";
+const listEl = document.getElementById('list');
+const countEl = document.getElementById('count');
+const emptyEl = document.getElementById('empty');
+const chipsEl = document.getElementById('chips');
+const qEl = document.getElementById('q');
+const phoneEl = document.getElementById('phoneOnly');
+
+CATS.forEach(c => {
+  const s = document.createElement('span');
+  s.className = 'chip' + (c === 'All' ? ' on' : '');
+  s.textContent = c;
+  s.onclick = () => { activeCat = c; document.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x.textContent === c)); render(); };
+  chipsEl.appendChild(s);
+});
+
+function badgeType(t){ return t === 'Free' ? 'b-free' : (t === 'Open source' ? 'b-oss' : 'b-freemium'); }
+
+function render(){
+  const q = qEl.value.trim().toLowerCase();
+  const phoneOnly = phoneEl.checked;
+  let html = '', shown = 0;
+  DATA.forEach(e => {
+    if (activeCat !== 'All' && e.cat !== activeCat) return;
+    let alts = e.alts.filter(a => !phoneOnly || a.ph);
+    if (!alts.length) return;
+    if (q){
+      const hay = (e.paid + ' ' + e.cat + ' ' + e.alts.map(a => a.n + ' ' + a.d).join(' ')).toLowerCase();
+      if (!hay.includes(q)) return;
+    }
+    shown++;
+    html += '<div class="entry"><div class="paid">Instead of paying for <b>' + e.paid + '</b></div>';
+    alts.forEach(a => {
+      html += '<div class="alt"><div class="alt-main"><div class="alt-name"><a href="' + a.u + '" target="_blank" rel="noopener">' + a.n + '</a></div><div class="alt-note">' + a.d + '</div></div>'
+        + '<div class="badges"><span class="badge ' + badgeType(a.t) + '">' + a.t + '</span>'
+        + (a.ph ? '<span class="badge b-phone">📱 Phone-only OK</span>' : '')
+        + '<span class="badge b-plat">' + a.p + '</span></div></div>';
+    });
+    html += '</div>';
+  });
+  listEl.innerHTML = html;
+  emptyEl.style.display = shown ? 'none' : 'block';
+  countEl.textContent = shown ? ('Showing ' + shown + ' paywall' + (shown === 1 ? '' : 's') + ' and their free ways out') : '';
+}
+qEl.addEventListener('input', render);
+phoneEl.addEventListener('change', render);
+render();
+</script>
+</body>
+</html>
