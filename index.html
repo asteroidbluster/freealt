@@ -197,7 +197,10 @@ const DATA = [
    {n:"playit.gg", d:"Host on your own machine and tunnel it to the internet free.", t:"Freemium", p:"PC · Web", ph:0, u:"https://playit.gg"}]},
  {paid:"Minecraft Realms subscription", cat:"Gaming", alts:[
    {n:"Aternos", d:"Your own always-configurable server instead of a Realm — free, with full addon/mod control.", t:"Free", p:"Web", ph:1, u:"https://aternos.org"},
-   {n:"Paper + Geyser (self-host)", d:"Run a Java server with the free Geyser plugin and Bedrock friends can join too. Needs a host machine.", t:"Open source", p:"PC", ph:0, u:"https://geysermc.org"}]}
+   {n:"Paper + Geyser (self-host)", d:"Run a Java server with the free Geyser plugin and Bedrock friends can join too. Needs a host machine.", t:"Open source", p:"PC", ph:0, u:"https://geysermc.org"}]},
+  {paid:"Discord Nitro (animated avatars, uploads, streaming perks)", cat:"Chat", alts:[
+    {n:"Root", d:"Closest Discord-style feel: servers, channels, roles, voice, video and screen share — and the animated PFP and banner Discord paywalls are free here. Still beta (3.3 stars), closed-source, and a paid Sudo tier exists for newer apps.", t:"Free", p:"Android · iOS · PC", ph:1, u:"https://play.google.com/store/apps/details?id=com.rootapp.mobile&hl=en_US"},
+    {n:"Stoat (formerly Revolt)", d:"Fully free and open-source Discord-style servers, channels and voice, self-hostable — the fallback if Root's closed-source direction bothers you.", t:"Open source", p:"Android · Web · PC", ph:1, u:"https://stoat.chat/"}]}
 ];
 
 const CATS = ["All", ...new Set(DATA.map(e => e.cat))];
