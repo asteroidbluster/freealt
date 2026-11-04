@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redstone and Mechanics | Minecraft Facts</title>
+<meta name="description" content="Obscure Minecraft mechanics, mob secrets and redstone quirks, plus two builds to try.">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #010704;
+    color: #fff;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  .hero {
+    padding: 36px 20px 28px;
+    background-color: #010704;
+    background-image: radial-gradient(ellipse at 75% 0%, rgba(8,223,156,0.28), transparent 60%);
+  }
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #08DF9C;
+    margin: 0 0 12px;
+  }
+  .hero h1 {
+    margin: 0 0 10px;
+    font-size: 2rem;
+    line-height: 1.15;
+    font-weight: 800;
+  }
+  .hero h1 span { color: #08DF9C; }
+  .hero p { margin: 0 0 18px; color: #A1B8B2; font-size: 0.95rem; }
+  .btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-solid {
+    background: #08DF9C;
+    color: #010704;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    padding: 9px 16px;
+    text-decoration: none;
+  }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    padding: 9px 16px;
+    text-decoration: none;
+  }
+  .sec-light { background: #E8F1ED; color: #0B1512; padding: 28px 20px; }
+  .sec-dark { background: #010704; color: #fff; padding: 28px 20px; }
+  .sec-light h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 6px;
+    text-align: center;
+  }
+  .sec-light h2 span { color: #0B8A66; }
+  .sec-sub {
+    margin: 0 0 16px;
+    color: #68708B;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  .sec-dark h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 16px;
+  }
+  .sec-dark h2 span { color: #08DF9C; }
+  .card-light {
+    background: #fff;
+    border: 1px solid #D5E2DB;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin: 12px 0;
+    color: #68708B;
+  }
+  .card-light b { color: #0B1512; }
+  .card-dark {
+    background: #12211C;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin: 12px 0;
+    color: #A1B8B2;
+  }
+  .card-dark b { color: #fff; }
+  .tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 99px;
+    padding: 2px 10px;
+    margin-bottom: 8px;
+  }
+  .tag-light { background: #D8EFE6; color: #0B8A66; }
+  .tag-dark { background: rgba(8,223,156,0.12); color: #08DF9C; border: 1px solid rgba(8,223,156,0.4); }
+  .guide {
+    background: #fff;
+    border: 1px solid #D5E2DB;
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin: 14px 0;
+    color: #68708B;
+  }
+  .guide h3 { margin: 0 0 8px; font-size: 1.1rem; color: #0B1512; }
+  .guide ol, .guide ul { margin: 8px 0; padding-left: 22px; }
+  .guide li { margin: 5px 0; }
+  .note {
+    background: #E4EFE9;
+    border-left: 4px solid #0B8A66;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 12px 0;
+    font-size: 0.9rem;
+    color: #0B1512;
+  }
+  footer {
+    background: #010704;
+    color: #68708B;
+    font-size: 0.8rem;
+    padding: 20px;
+  }
+
+  .topnav { position: sticky; top: 0; z-index: 10; background: #010704; border-bottom: 1px solid rgba(255,255,255,0.12); padding: 10px 20px; }
+  .topnav .wrap { display: flex; align-items: center; gap: 16px; }
+  .brand { color: #fff; font-weight: 800; text-decoration: none; white-space: nowrap; }
+  .brand span { color: #08DF9C; }
+  .links { display: flex; gap: 4px; overflow-x: auto; margin-left: auto; }
+  .links a { color: #A1B8B2; text-decoration: none; font-size: 0.85rem; padding: 6px 10px; border-radius: 99px; white-space: nowrap; }
+  .links a.active { color: #08DF9C; background: rgba(8,223,156,0.12); }
+  .links a:hover { color: #fff; }
+  @keyframes heroIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .hero .wrap { animation: heroIn 0.6s ease both; }
+  html.js .card-light, html.js .card-dark, html.js .guide { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  html.js .revealed { opacity: 1; transform: none; }
+  .card-light, .card-dark, .guide { transition: transform 0.2s ease, border-color 0.2s ease; }
+  .card-light:hover, .card-dark:hover { transform: translateY(-2px); }
+  .card-light:hover { border-color: #0B8A66; }
+  .card-dark:hover { border-color: rgba(8,223,156,0.5); }
+  .btn-solid, .btn-outline { transition: transform 0.2s ease, opacity 0.2s ease; }
+  .btn-solid:hover, .btn-outline:hover { transform: translateY(-1px); opacity: 0.92; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero .wrap { animation: none; }
+    html.js .card-light, html.js .card-dark, html.js .guide { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<nav class="topnav"><div class="wrap"><a class="brand" href="index.html">Minecraft <span>Facts</span></a><div class="links"><a href="index.html" class="">Home</a><a href="redstone.html" class="active">Redstone</a><a href="world.html" class="">World</a><a href="mobs.html" class="">Mobs</a><a href="items.html" class="">Items</a><a href="guides.html" class="">Guides</a></div></div></nav>
+<section class="sec-light" id="redstone">
+  <div class="wrap">
+    <h2>Redstone and <span>Mechanics</span></h2>
+    <p class="sec-sub">The quirks that make engineers smile.</p>
+
+    <div class="card-light"><span class="tag tag-light">JAVA ONLY</span><br>
+    <b>Quasi-connectivity.</b><br>
+    Pistons, droppers and dispensers can be powered by redstone sitting on the block <i>above</i> them, even diagonally. It's a bug Mojang kept as a feature, and half of Java redstone relies on it.</div>
+
+    <div class="card-light"><b>Copper bulbs have memory.</b><br>
+    One redstone pulse turns them on and they <i>stay</i> on until the next pulse. It's a whole T flip-flop in a single block, and they dim as they oxidize.</div>
+
+    <div class="card-light"><b>Wind charges press buttons, levers and bells.</b><br>
+    You can trigger redstone from a distance just by throwing one.</div>
+
+    <div class="card-light"><b>Honey blocks refuse to stick to slime blocks.</b><br>
+    Every other block sticks to one or the other, but those two won't stick to each other — flying machine builders exploit this constantly.</div>
+
+    <div class="card-light"><b>Spawn chunks stay loaded forever,</b><br>
+    even when nobody is there. That's why farms built at world spawn run around the clock.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Java and Bedrock unless noted. The piston door is Java-only (quasi-connectivity doesn't exist on Bedrock). Creaking needs Java 1.21.4+ / Bedrock 1.21.50+; happy ghasts need Java 1.21.6+ / Bedrock 1.21.90+.
+  </div>
+</footer>
+
+
+<script>
+var io = new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('revealed');io.unobserve(e.target);}})},{threshold:0.12});
+document.querySelectorAll('.card-light,.card-dark,.guide').forEach(function(el){io.observe(el);});
+</script>
+</body>
+</html>

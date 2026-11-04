@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mobs and Creatures | Minecraft Facts</title>
+<meta name="description" content="Obscure Minecraft mechanics, mob secrets and redstone quirks, plus two builds to try.">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #010704;
+    color: #fff;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  .hero {
+    padding: 36px 20px 28px;
+    background-color: #010704;
+    background-image: radial-gradient(ellipse at 75% 0%, rgba(8,223,156,0.28), transparent 60%);
+  }
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #08DF9C;
+    margin: 0 0 12px;
+  }
+  .hero h1 {
+    margin: 0 0 10px;
+    font-size: 2rem;
+    line-height: 1.15;
+    font-weight: 800;
+  }
+  .hero h1 span { color: #08DF9C; }
+  .hero p { margin: 0 0 18px; color: #A1B8B2; font-size: 0.95rem; }
+  .btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-solid {
+    background: #08DF9C;
+    color: #010704;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    padding: 9px 16px;
+    text-decoration: none;
+  }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    padding: 9px 16px;
+    text-decoration: none;
+  }
+  .sec-light { background: #E8F1ED; color: #0B1512; padding: 28px 20px; }
+  .sec-dark { background: #010704; color: #fff; padding: 28px 20px; }
+  .sec-light h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 6px;
+    text-align: center;
+  }
+  .sec-light h2 span { color: #0B8A66; }
+  .sec-sub {
+    margin: 0 0 16px;
+    color: #68708B;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  .sec-dark h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 16px;
+  }
+  .sec-dark h2 span { color: #08DF9C; }
+  .card-light {
+    background: #fff;
+    border: 1px solid #D5E2DB;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin: 12px 0;
+    color: #68708B;
+  }
+  .card-light b { color: #0B1512; }
+  .card-dark {
+    background: #12211C;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin: 12px 0;
+    color: #A1B8B2;
+  }
+  .card-dark b { color: #fff; }
+  .tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 99px;
+    padding: 2px 10px;
+    margin-bottom: 8px;
+  }
+  .tag-light { background: #D8EFE6; color: #0B8A66; }
+  .tag-dark { background: rgba(8,223,156,0.12); color: #08DF9C; border: 1px solid rgba(8,223,156,0.4); }
+  .guide {
+    background: #fff;
+    border: 1px solid #D5E2DB;
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin: 14px 0;
+    color: #68708B;
+  }
+  .guide h3 { margin: 0 0 8px; font-size: 1.1rem; color: #0B1512; }
+  .guide ol, .guide ul { margin: 8px 0; padding-left: 22px; }
+  .guide li { margin: 5px 0; }
+  .note {
+    background: #E4EFE9;
+    border-left: 4px solid #0B8A66;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 12px 0;
+    font-size: 0.9rem;
+    color: #0B1512;
+  }
+  footer {
+    background: #010704;
+    color: #68708B;
+    font-size: 0.8rem;
+    padding: 20px;
+  }
+
+  .topnav { position: sticky; top: 0; z-index: 10; background: #010704; border-bottom: 1px solid rgba(255,255,255,0.12); padding: 10px 20px; }
+  .topnav .wrap { display: flex; align-items: center; gap: 16px; }
+  .brand { color: #fff; font-weight: 800; text-decoration: none; white-space: nowrap; }
+  .brand span { color: #08DF9C; }
+  .links { display: flex; gap: 4px; overflow-x: auto; margin-left: auto; }
+  .links a { color: #A1B8B2; text-decoration: none; font-size: 0.85rem; padding: 6px 10px; border-radius: 99px; white-space: nowrap; }
+  .links a.active { color: #08DF9C; background: rgba(8,223,156,0.12); }
+  .links a:hover { color: #fff; }
+  @keyframes heroIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .hero .wrap { animation: heroIn 0.6s ease both; }
+  html.js .card-light, html.js .card-dark, html.js .guide { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  html.js .revealed { opacity: 1; transform: none; }
+  .card-light, .card-dark, .guide { transition: transform 0.2s ease, border-color 0.2s ease; }
+  .card-light:hover, .card-dark:hover { transform: translateY(-2px); }
+  .card-light:hover { border-color: #0B8A66; }
+  .card-dark:hover { border-color: rgba(8,223,156,0.5); }
+  .btn-solid, .btn-outline { transition: transform 0.2s ease, opacity 0.2s ease; }
+  .btn-solid:hover, .btn-outline:hover { transform: translateY(-1px); opacity: 0.92; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero .wrap { animation: none; }
+    html.js .card-light, html.js .card-dark, html.js .guide { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<nav class="topnav"><div class="wrap"><a class="brand" href="index.html">Minecraft <span>Facts</span></a><div class="links"><a href="index.html" class="">Home</a><a href="redstone.html" class="">Redstone</a><a href="world.html" class="">World</a><a href="mobs.html" class="active">Mobs</a><a href="items.html" class="">Items</a><a href="guides.html" class="">Guides</a></div></div></nav>
+<section class="sec-light" id="mobs">
+  <div class="wrap">
+    <h2>Mobs and <span>Creatures</span></h2>
+    <p class="sec-sub">Small behaviors, big surprises.</p>
+
+    <div class="card-light"><b>A fox holding a totem will use it.</b><br>
+    Give a fox a totem of undying and it will survive a fatal hit, just like a player would.</div>
+
+    <div class="card-light"><b>Lightning transforms mobs.</b><br>
+    A pig struck by lightning becomes a zombified piglin, and a villager struck by lightning becomes a witch.</div>
+
+    <div class="card-light"><b>Zombie sieges ignore light.</b><br>
+    At midnight, a horde of zombies can spawn in a village even if every inch is torch-lit — light level doesn't stop them.</div>
+
+    <div class="card-light"><b>You can shear a snow golem's pumpkin off.</b><br>
+    Underneath it actually has a face.</div>
+
+    <div class="card-light"><b>Iron golems hand poppies to baby villagers.</b><br>
+    Just a little animation, no purpose, but it's there.</div>
+
+    <div class="card-light"><b>Name tag tricks.</b><br>
+    Name a vindicator "Johnny" and it attacks everything except illagers, name a rabbit "Toast" for a black-and-white skin, "Dinnerbone" flips any mob upside down, and "jeb_" turns a sheep rainbow.</div>
+
+    <div class="card-light"><b>Evokers do the "wololo."</b><br>
+    Their spell turns blue sheep red — a direct Age of Empires priest reference.</div>
+
+    <div class="card-light"><b>Ender pearls have a 5% chance to spawn an endermite</b> — and endermen actively hunt endermites down.</div>
+
+    <div class="card-light"><b>Wool blocks vibrations.</b><br>
+    Sculk sensors can't hear anything through wool, snowballs and eggs distract the warden by making noise elsewhere, and the warden's sonic boom ignores armor, shields and walls entirely.</div>
+
+    <div class="card-light"><b>Froglights come from frogs eating small magma cubes,</b><br>
+    and the color depends on the frog: temperate frogs make ochre, warm ones pearlescent, cold ones verdant.</div>
+
+    <div class="card-light"><b>Allays duplicate.</b><br>
+    Give a dancing allay (near a jukebox) an amethyst shard and it splits into two.</div>
+
+    <div class="card-light"><span class="tag tag-light">JAVA 1.21.4+ &middot; BEDROCK 1.21.50+</span><br>
+    <b>The creaking can't be hurt by hitting it.</b><br>
+    You have to find its creaking heart block hidden inside a pale oak tree and break that.</div>
+
+    <div class="card-light"><span class="tag tag-light">JAVA 1.21.6+ &middot; BEDROCK 1.21.90+</span><br>
+    <b>Happy ghasts.</b><br>
+    Come from rehydrating a dried ghast in water, and with a harness up to 4 players can ride one.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Java and Bedrock unless noted. The piston door is Java-only (quasi-connectivity doesn't exist on Bedrock). Creaking needs Java 1.21.4+ / Bedrock 1.21.50+; happy ghasts need Java 1.21.6+ / Bedrock 1.21.90+.
+  </div>
+</footer>
+
+
+<script>
+var io = new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('revealed');io.unobserve(e.target);}})},{threshold:0.12});
+document.querySelectorAll('.card-light,.card-dark,.guide').forEach(function(el){io.observe(el);});
+</script>
+</body>
+</html>
