@@ -10,21 +10,23 @@
   body {
     margin: 0;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    background: #010704;
-    color: #fff;
+    background: linear-gradient(120deg, #FFF8ED, #FBE7DE, #FDEBC8, #E4F5E9, #DFF0FB, #EDE6FB, #FFF8ED);
+    background-size: 300% 300%;
+    animation: bg-shift 36s ease infinite;
+    color: #0B1512;
     line-height: 1.55;
   }
   .wrap { max-width: 760px; margin: 0 auto; }
   .hero {
     padding: 36px 20px 28px;
-    background-color: #010704;
-    background-image: radial-gradient(ellipse at 75% 0%, rgba(8,223,156,0.28), transparent 60%);
+    background-color: transparent;
+    background-image: radial-gradient(ellipse at 75% 0%, rgba(217,56,43,0.16), transparent 60%), radial-gradient(ellipse at 10% 100%, rgba(242,193,78,0.14), transparent 55%);
   }
   .eyebrow {
     font-size: 0.7rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #08DF9C;
+    color: #D9382B;
     margin: 0 0 12px;
   }
   .hero h1 {
@@ -33,12 +35,12 @@
     line-height: 1.15;
     font-weight: 800;
   }
-  .hero h1 span { color: #08DF9C; }
-  .hero p { margin: 0 0 18px; color: #A1B8B2; font-size: 0.95rem; }
+  .hero h1 span { color: #D9382B; }
+  .hero p { margin: 0 0 18px; color: #6B5D52; font-size: 0.95rem; }
   .btns { display: flex; gap: 10px; flex-wrap: wrap; }
   .btn-solid {
-    background: #08DF9C;
-    color: #010704;
+    background: #D9382B;
+    color: #fff;
     font-weight: 700;
     font-size: 0.85rem;
     border-radius: 8px;
@@ -46,15 +48,15 @@
     text-decoration: none;
   }
   .btn-outline {
-    border: 1px solid rgba(255,255,255,0.35);
-    color: #fff;
+    border: 1px solid rgba(11,21,18,0.35);
+    color: #0B1512;
     font-size: 0.85rem;
     border-radius: 8px;
     padding: 9px 16px;
     text-decoration: none;
   }
   .sec-light { background: #E8F1ED; color: #0B1512; padding: 28px 20px; }
-  .sec-dark { background: #010704; color: #fff; padding: 28px 20px; }
+  .sec-dark { background: #FBE7DE; color: #0B1512; padding: 28px 20px; }
   .sec-light h2 {
     font-size: 1.4rem;
     font-weight: 800;
@@ -75,7 +77,7 @@
     line-height: 1.25;
     margin: 0 0 16px;
   }
-  .sec-dark h2 span { color: #08DF9C; }
+  .sec-dark h2 span { color: #D9382B; }
   .card-light {
     background: #fff;
     border: 1px solid #D5E2DB;
@@ -86,14 +88,14 @@
   }
   .card-light b { color: #0B1512; }
   .card-dark {
-    background: #12211C;
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.92);
+    border: 1px solid #F0D9CE;
     border-radius: 14px;
     padding: 14px 16px;
     margin: 12px 0;
-    color: #A1B8B2;
+    color: #6B5D52;
   }
-  .card-dark b { color: #fff; }
+  .card-dark b { color: #0B1512; }
   .tag {
     display: inline-block;
     font-size: 0.7rem;
@@ -103,7 +105,7 @@
     margin-bottom: 8px;
   }
   .tag-light { background: #D8EFE6; color: #0B8A66; }
-  .tag-dark { background: rgba(8,223,156,0.12); color: #08DF9C; border: 1px solid rgba(8,223,156,0.4); }
+  .tag-dark { background: rgba(217,56,43,0.10); color: #D9382B; border: 1px solid rgba(217,56,43,0.4); }
   .guide {
     background: #fff;
     border: 1px solid #D5E2DB;
@@ -125,33 +127,84 @@
     color: #0B1512;
   }
   footer {
-    background: #010704;
-    color: #68708B;
+    background: transparent;
+    color: #6B5D52;
     font-size: 0.8rem;
     padding: 20px;
   }
 
-  .topnav { position: sticky; top: 0; z-index: 10; background: #010704; border-bottom: 1px solid rgba(255,255,255,0.12); padding: 10px 20px; }
+  .topnav { position: sticky; top: 0; z-index: 10; background: rgba(255,248,237,0.85); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(11,21,18,0.12); padding: 10px 20px; }
   .topnav .wrap { display: flex; align-items: center; gap: 16px; }
-  .brand { color: #fff; font-weight: 800; text-decoration: none; white-space: nowrap; }
-  .brand span { color: #08DF9C; }
+  .brand { color: #0B1512; font-weight: 800; text-decoration: none; white-space: nowrap; }
+  .brand span { color: #D9382B; }
   .links { display: flex; gap: 4px; overflow-x: auto; margin-left: auto; }
-  .links a { color: #A1B8B2; text-decoration: none; font-size: 0.85rem; padding: 6px 10px; border-radius: 99px; white-space: nowrap; }
-  .links a.active { color: #08DF9C; background: rgba(8,223,156,0.12); }
-  .links a:hover { color: #fff; }
+  .links a { color: #6B5D52; text-decoration: none; font-size: 0.85rem; padding: 6px 10px; border-radius: 99px; white-space: nowrap; }
+  .links a.active { color: #D9382B; background: rgba(217,56,43,0.10); }
+  .links a:hover { color: #0B1512; }
   @keyframes heroIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @keyframes bg-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
   .hero .wrap { animation: heroIn 0.6s ease both; }
   html.js .card-light, html.js .card-dark, html.js .guide { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
   html.js .revealed { opacity: 1; transform: none; }
   .card-light, .card-dark, .guide { transition: transform 0.2s ease, border-color 0.2s ease; }
   .card-light:hover, .card-dark:hover { transform: translateY(-2px); }
   .card-light:hover { border-color: #0B8A66; }
-  .card-dark:hover { border-color: rgba(8,223,156,0.5); }
+  .card-dark:hover { border-color: rgba(217,56,43,0.5); }
   .btn-solid, .btn-outline { transition: transform 0.2s ease, opacity 0.2s ease; }
   .btn-solid:hover, .btn-outline:hover { transform: translateY(-1px); opacity: 0.92; }
   @media (prefers-reduced-motion: reduce) {
+    body { animation: none; }
     .hero .wrap { animation: none; }
     html.js .card-light, html.js .card-dark, html.js .guide { opacity: 1; transform: none; transition: none; }
+  }
+/* ---- Falling leaves (preview) ---- */
+  #leaves {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  #leaves.off { display: none; }
+  .leaf {
+    position: absolute;
+    top: -8vh;
+    animation-name: leaf-fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+  .leaf svg {
+    display: block;
+    animation-name: leaf-sway;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+  @keyframes leaf-fall {
+    from { transform: translateY(-8vh) rotate(0deg); }
+    to   { transform: translateY(112vh) rotate(340deg); }
+  }
+  @keyframes leaf-sway {
+    from { transform: translateX(-16px) rotate(-18deg); }
+    to   { transform: translateX(16px) rotate(18deg); }
+  }
+  #leaves-toggle {
+    position: fixed;
+    right: 14px;
+    bottom: 14px;
+    z-index: 60;
+    background: rgba(255,248,237,0.92);
+    color: #D9382B;
+    border: 1px solid rgba(217,56,43,0.5);
+    border-radius: 99px;
+    padding: 7px 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #leaves, #leaves-toggle { display: none; }
   }
 </style>
 <script>document.documentElement.classList.add('js');</script>
@@ -184,6 +237,34 @@
 <script>
 var io = new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('revealed');io.unobserve(e.target);}})},{threshold:0.12});
 document.querySelectorAll('.card-light,.card-dark,.guide').forEach(function(el){io.observe(el);});
+</script>
+<div id="leaves" aria-hidden="true"></div>
+<button id="leaves-toggle" type="button">Pause leaves</button>
+<script>
+(function () {
+  var layer = document.getElementById('leaves');
+  var toggle = document.getElementById('leaves-toggle');
+  var colors = ['#F2C14E', '#E8963C', '#D96C2B', '#C94F3D'];
+  var COUNT = 14;
+  for (var i = 0; i < COUNT; i++) {
+    var size = 14 + Math.random() * 12;
+    var dur = 10 + Math.random() * 8;
+    var delay = -Math.random() * 18;
+    var sway = 1.6 + Math.random() * 1.4;
+    var color = colors[i % colors.length];
+    var leaf = document.createElement('span');
+    leaf.className = 'leaf';
+    leaf.style.left = (Math.random() * 96) + '%';
+    leaf.style.animationDuration = dur + 's';
+    leaf.style.animationDelay = delay + 's';
+    leaf.innerHTML = '<svg width="' + size.toFixed(0) + '" height="' + size.toFixed(0) + '" viewBox="0 0 24 24" style="animation-duration:' + sway.toFixed(2) + 's"><path d="M21 3C11 3 3 11 3 21c10 0 18-8 18-18z" fill="' + color + '" opacity="0.9"/><path d="M4 20C10 14 15 9 20 4" fill="none" stroke="rgba(120,40,20,0.35)" stroke-width="1.2"/></svg>';
+    layer.appendChild(leaf);
+  }
+  toggle.addEventListener('click', function () {
+    var off = layer.classList.toggle('off');
+    toggle.textContent = off ? 'Play leaves' : 'Pause leaves';
+  });
+})();
 </script>
 </body>
 </html>
