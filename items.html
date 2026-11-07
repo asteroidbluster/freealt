@@ -68,8 +68,8 @@
     padding: 9px 16px;
     text-decoration: none;
   }
-  .sec-light { background: #E8F1ED; color: #0B1512; padding: 28px 20px; }
-  .sec-dark { background: #FBE7DE; color: #0B1512; padding: 28px 20px; }
+  .sec-light { background: transparent; color: #0B1512; padding: 28px 20px; }
+  .sec-dark { background: transparent; color: #0B1512; padding: 28px 20px; }
   .sec-light h2 {
     font-size: 1.4rem;
     font-weight: 800;
@@ -92,8 +92,10 @@
   }
   .sec-dark h2 span { color: #D9382B; }
   .card-light {
-    background: #fff;
-    border: 1px solid #D5E2DB;
+    background: rgba(255,255,255,0.55);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.65);
     border-radius: 14px;
     padding: 14px 16px;
     margin: 12px 0;
@@ -101,8 +103,10 @@
   }
   .card-light b { color: #0B1512; }
   .card-dark {
-    background: rgba(255,255,255,0.92);
-    border: 1px solid #F0D9CE;
+    background: rgba(255,255,255,0.55);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.65);
     border-radius: 14px;
     padding: 14px 16px;
     margin: 12px 0;
@@ -120,8 +124,10 @@
   .tag-light { background: #D8EFE6; color: #0B8A66; }
   .tag-dark { background: rgba(217,56,43,0.10); color: #D9382B; border: 1px solid rgba(217,56,43,0.4); }
   .guide {
-    background: #fff;
-    border: 1px solid #D5E2DB;
+    background: rgba(255,255,255,0.55);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.65);
     border-radius: 14px;
     padding: 16px 18px;
     margin: 14px 0;
@@ -131,7 +137,9 @@
   .guide ol, .guide ul { margin: 8px 0; padding-left: 22px; }
   .guide li { margin: 5px 0; }
   .note {
-    background: #E4EFE9;
+    background: rgba(255,255,255,0.45);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
     border-left: 4px solid #0B8A66;
     border-radius: 8px;
     padding: 12px 14px;
@@ -231,6 +239,8 @@
 </head>
 <body>
 <nav class="topnav"><div class="wrap"><a class="brand" href="index.html">Minecraft <span>Facts</span></a><div class="links"><a href="index.html" class="">Home</a><a href="redstone.html" class="">Redstone</a><a href="world.html" class="">World</a><a href="mobs.html" class="">Mobs</a><a href="items.html" class="active">Items</a><a href="guides.html" class="">Guides</a></div></div></nav>
+<img src="items-hero.jpg" alt="Players battling a breeze in a trial chamber — official Tricky Trials key art" style="display:block;width:100%;max-width:920px;margin:22px auto 0;border-radius:14px">
+<p class="ascii-cap">Image: official Tricky Trials key art © Mojang/Microsoft, via Minecraft Wiki</p>
 <div class="ascii-scene"><ascii-art piece="campfire" size="17"></ascii-art></div>
 <p class="ascii-cap">Animated ASCII &middot; Campfire</p>
 
