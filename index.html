@@ -226,6 +226,13 @@
   }
 </style>
 <script>document.documentElement.classList.add('js');</script>
+<style>
+.ascii-scene{margin:26px auto;max-width:920px;border-radius:14px;overflow:hidden;background:#0a0f0d}
+.ascii-scene ascii-art{display:block;width:100%}
+.ascii-cap{text-align:center;font-size:13px;opacity:.7;margin:8px 0 0}
+.ascii-divider{margin:26px auto;max-width:920px}
+.ascii-divider ascii-art{display:block;width:100%}
+</style>
 </head>
 <body>
 <nav class="topnav"><div class="wrap"><a class="brand" href="index.html">Minecraft <span>Facts</span></a><div class="links"><a href="index.html" class="active">Home</a><a href="redstone.html" class="">Redstone</a><a href="world.html" class="">World</a><a href="mobs.html" class="">Mobs</a><a href="items.html" class="">Items</a><a href="guides.html" class="">Guides</a></div></div></nav>
@@ -243,6 +250,9 @@
   </div>
 </div>
 
+<div class="ascii-scene"><ascii-art piece="fuji-dawn-lake" size="8"></ascii-art></div>
+<p class="ascii-cap">Animated ASCII &middot; Fuji Dawn Lake</p>
+
 <section class="sec-overview"><div class="wrap">
 <h2>Explore by <span>section</span></h2>
 <p class="sec-sub">Pick a section — each one has its own page now.</p>
@@ -253,6 +263,10 @@
 <a href="guides.html" style="text-decoration:none;color:inherit"><div class="card-dark"><b>Build Guides</b> &middot; 2 guides<br>The dripstone lava farm and the QC 2x2 piston door.<br><span style="color:#D9382B;font-weight:700">Explore &rarr;</span></div></a>
 </div></section>
 
+
+<div class="ascii-scene"><ascii-art piece="autumn-forest" size="8"></ascii-art></div>
+<p class="ascii-cap">Animated ASCII &middot; Autumn Forest</p>
+<div class="ascii-divider"><ascii-art piece="wave-divider" size="8"></ascii-art></div>
 
 <footer>
   <div class="wrap">
@@ -293,5 +307,6 @@ document.querySelectorAll('.card-light,.card-dark,.guide').forEach(function(el){
   });
 })();
 </script>
+<script type="module" src="https://www.ascii-magic.com/ascii/ascii.js"></script>
 </body>
 </html>
